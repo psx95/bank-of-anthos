@@ -140,6 +140,8 @@ spec:
         runAsNonRoot: true
         runAsUser: 1000
       serviceAccountName: bank-of-anthos
+      nodeSelector:
+        iam.gke.io/gke-metadata-server-enabled: "true"
       terminationGracePeriodSeconds: 5
       volumes:
         - emptyDir: {}
