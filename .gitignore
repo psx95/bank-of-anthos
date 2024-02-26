@@ -211,3 +211,6 @@ venv-*
 
 # go for ci
 go/
+
+# cloud-profiler agent paths
+cprof/
