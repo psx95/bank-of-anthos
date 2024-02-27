@@ -20,6 +20,8 @@ metadata:
     environment: development
     team: ledger
     tier: backend
+  annotations:
+    traffic.sidecar.istio.io/excludeOutboundIPRanges: 169.254.169.254/32
   name: balancereader
 spec:
   ports:
