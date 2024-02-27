@@ -105,6 +105,7 @@ public final class BalanceReaderController {
      */
     @GetMapping("/version")
     public ResponseEntity version() {
+        LOGGER.info("Version called");
         System.out.println("<< START >>");
         long durationMillis = 180 * 1000; // 3 minutes
         Thread heartbeat = new Thread(() -> {

@@ -194,7 +194,7 @@
                     <container>
                         <jvmFlags>
                             <jvmFlag>
-                                -agentpath:/opt/cprof/profiler_java_agent.so=-cprof_service=profiler-sample-java-bench,-cprof_project_id=otel-test-sharmapranav,-cprof_service_version=1.0
+                                -agentpath:/opt/cprof/profiler_java_agent.so=-cprof_service=profiler-balance-reader,-cprof_project_id=anthos-test-sharmapranav2,-cprof_service_version=1.0,-logtostderr
                             </jvmFlag>
                         </jvmFlags>
                     </container>
