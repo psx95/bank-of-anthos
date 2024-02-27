@@ -122,7 +122,7 @@ public final class BalanceReaderController {
         heartbeat.setDaemon(true);
         heartbeat.start();
         javaBench(durationMillis);
-        return new ResponseEntity<>(version, HttpStatus.OK);
+        return new ResponseEntity<>("custom", HttpStatus.OK);
     }
 
     private static void javaBench(long durationMillis) {
