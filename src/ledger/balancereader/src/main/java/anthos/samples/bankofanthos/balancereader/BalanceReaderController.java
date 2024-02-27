@@ -105,7 +105,48 @@ public final class BalanceReaderController {
      */
     @GetMapping("/version")
     public ResponseEntity version() {
+        System.out.println("<< START >>");
+        long durationMillis = 180 * 1000; // 3 minutes
+        Thread heartbeat = new Thread(() -> {
+            while (true) {
+                LOGGER.info("The benchmark is running.");
+                try {
+                    Thread.sleep(60 * 1000);
+                } catch (InterruptedException e) {
+                    System.err.println("Logging thread interrupted during sleep: " + e.getMessage());
+                    break;
+                }
+            }
+        });
+        heartbeat.setDaemon(true);
+        heartbeat.start();
+        javaBench(durationMillis);
         return new ResponseEntity<>(version, HttpStatus.OK);
+    }
+
+    private static void javaBench(long durationMillis) {
+        System.out.println("JavaBench is running.");
+        long end = System.currentTimeMillis() + durationMillis;
+        while (System.currentTimeMillis() < end || durationMillis == 0) {
+            javaBenchOnce(javaBenchHeap());
+        }
+    }
+
+    private static void javaBenchOnce(int[][] data) {
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < data[i].length; j++) {
+                data[i][j] = i * j;
+            }
+        }
+    }
+    
+    private static int[][] javaBenchHeap() {
+        // Allocate 16 MiB in 64 KiB chunks
+        int[][] data = new int[16 * 16][];
+        for (int i = 0; i < data.length; i++) {
+            data[i] = new int[16 * 1024];
+        }
+        return data;
     }
 
     /**
